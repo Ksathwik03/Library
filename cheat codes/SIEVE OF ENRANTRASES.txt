@@ -1,0 +1,57 @@
+#include <iostream>
+#include<cmath>
+#include<vector>
+#include<algorithm>
+#define there bool present = binary_search(a.begin(),a.end(),3);
+#include<set>
+#include<string>
+#include <bits/stdc++.h>
+#define ll long long int
+#include <map>
+#include <bits/stdc++.h>
+#include<utility>
+#define endl "\n"
+#define mod 1000000007
+
+
+using namespace std;
+
+int b[1000004] = {0};
+
+void SieveOfEratosthenes(int n)
+{
+    bool prime[n + 1];
+    memset(prime, true, sizeof(prime));
+
+    for (int p = 2; p * p <= n; p++)
+    {
+        if (prime[p] == true)
+        {
+            for (int i = p * p; i <= n; i += p)
+                prime[i] = false;
+        }
+    }
+
+    for (int p = 5; p <= n; p++)
+        if (prime[p]){
+            b[p] = b[p-1]+1;
+        }
+        else{
+            b[p] = b[p-1];
+        }
+}
+
+int main()
+{
+    int n = 1000000;
+    SieveOfEratosthenes(n);
+    int t; cin >> t;
+    while(t--){
+        int x; cin >> x;
+        cout  << b[x] << endl;
+    }
+    return 0;
+}
+
+
+

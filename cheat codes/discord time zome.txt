@@ -1,0 +1,17 @@
+    @commands.command(brief='Set the server\'s timezone',
+                      usage=' <timezone>')
+    @commands.has_any_role('Admin', constants.REMIND_MODERATOR_ROLE)
+    async def settz(self, ctx, timezone: str):
+        """Sets the server's timezone to the given timezone.
+        """
+        if not (timezone in pytz.all_timezones):
+            desc = ('The given timezone is invalid\n\n'
+                    'Examples of valid timezones:\n\n')
+            desc += '\n'.join(random.sample(pytz.all_timezones, 5))
+            desc += '\n\nAll valid timezones can be found [here]'
+            desc += f'({_PYTZ_TIMEZONES_GIST_URL})'
+            raise RemindersCogError(desc)
+        self.guild_map[ctx.guild.id].localtimezone = pytz.timezone(timezone)
+        await ctx.send(embed=discord_common.embed_success(
+            f'Succesfully set the server timezone to {timezone}'))
+ 	

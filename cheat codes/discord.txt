@@ -1,0 +1,12 @@
+current_time = dt.datetime.utcnow()
+        pages = self._make_contest_pages(
+            contests, title, self.guild_map[ctx.guild.id].localtimezone)
+        paginator.paginate(
+            self.bot,
+            ctx.channel,
+            pages,
+            wait_time=_CONTEST_PAGINATE_WAIT_TIME,
+            set_pagenum_footers=True
+        )
+start = contest.start_time.replace(tzinfo=dt.timezone.utc).astimezone(tz)
+    return f'{start.strftime("%d %b %y, %H:%M")} {tz}'
