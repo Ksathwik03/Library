@@ -1,0 +1,25 @@
+//struct node{
+//    int d;
+//    struct node *l,*r;
+//};
+//int m=0,n,a[10];
+//struct node* create(int x){
+//    struct node* root = (struct node*)malloc(sizeof(struct node));
+//    root->d = x;
+//    root->l = NULL;
+//    root->r = NULL;
+//    return root;
+//}
+//
+//struct node* solve(int x,int y,int z){
+//    struct node* root = NULL;
+//    if(x>y && x<z){
+//        root = create(x);
+//        m++;
+//        if(m>=n){
+//        return root;
+//        }
+//        root->l = solve(a[m],y,x);
+//        root->r = solve(a[m],x,z);
+//    }
+//    return root;									

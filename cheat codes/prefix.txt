@@ -1,0 +1,7 @@
+rep(i,2,n){
+         b[i] = __gcd(b[i-1],a[i]);
+        }
+        c[n+1] = 0;c[n] = a[n];
+        for(int i=n-1;i>=1;i--){
+            c[i] = __gcd(c[i+1],a[i]);
+        }
