@@ -31,7 +31,7 @@ var getBook = async(req, res) => {
 var getLoanedBooks = async(req, res) => {
 
     try{
-        var user = await User.findById('6105a560a1c2772058202611')
+        var user = await User.findById(req.user._id)
         user = user.loaned_books
         var books = []
         for(let index=0;index<user.length; index++) {
@@ -49,9 +49,12 @@ var getLoanedBooks = async(req, res) => {
 }
 
 var returnBook = async(req,res) => {
-    console.log(req.body)
     await copy.deleteOne({'_id':req.body.cid})
-    
+    var user = await User.findById(req.user._id)
+    user.loaned_books = user.loaned_books.filter(id => id.toString() !== req.body.cid)
+    await user.save()
+    var books =  user.loaned_books
+    res.render('loaned_books',{books : books, title: 'Loaned Books'})
 }
 
 var issueBook = async(req, res) => {
