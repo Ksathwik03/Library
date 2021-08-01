@@ -1,0 +1,26 @@
+<html>
+  <%- include ("./partials/header.ejs") %>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <%- include ("./partials/sidebar.ejs") %>
+        <form action="/login" method="POST">
+        Username: 
+        <input type="text" id = "username" name="username">
+        Password:
+        <input type="password" id="password" name="password">
+        <br>
+        <button class="btn btn-primary" id="loan-button" type="submit">
+            Login
+        </button>
+        <% if (message) { %>
+          <p class="text-center text-danger" style="font-size:1.3rem"><%= message %></p>
+      <% } %>
+        </form>
+        <br>
+        <h5>Dont have an account <a href="/register" >Register</a> </h5>
+      </div>
+      </div>
+  </body>
+</html>
